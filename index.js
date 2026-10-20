@@ -27,3 +27,6 @@ const getBiodata = (req, res) => {
         res.status(500).send('Terjadi kesalahan pada server');
     });
 }
+
+app.get('/', getBiodata)
+app.get('/biodata', getBiodata)
