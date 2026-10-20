@@ -17,16 +17,15 @@ const pool = new Pool({
     port: 5432
 })
 
-const getBiodata = (req, res) => {
+app.get('/', (req, res, next) => {
+    console.log("TEST DATA :");
     pool.query('SELECT * FROM biodata')
     .then(testData => {
-        res.json(testData.rows);
+        console.log(testData);
+        res.send(testData.rows);
     })
     .catch(err => {
         console.error(err);
-        res.status(500).send('Terjadi kesalahan pada server');
+        res.status(500).send('Internal Server Error');
     });
-}
-
-app.get('/', getBiodata)
-app.get('/biodata', getBiodata)
+}) 
